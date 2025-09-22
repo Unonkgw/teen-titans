@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: "TeenTitans";
+  src: url("./assets/font/ttg.ttf") format("truetype");
+}
+
+h1, .logo-text {
+  font-family: "TeenTitans", sans-serif;
+}
+
