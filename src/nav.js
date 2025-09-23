@@ -1,51 +1,92 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "./assets/images/Teen_Titans_-_logo_(English).png";
 
-function Nav({ username }) {
-  const location = useLocation();
-
-  const showGreeting = username && location.pathname !== "/login";
-
+function Nav({ username, onLoginClick, onLogout }) {
   return (
-    <div className="App">
-      <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-        <div className="container-fluid">
-          <NavLink className="navbar-brand" to="/home">
-            <img src={logo} alt="Teen Titans Logo" style={{ height: "40px" }} />
+    <nav className="tt-nav">
+      <div className="tt-container">
+        <div className="tt-nav__container">
+          <NavLink to="/home" className="tt-nav__brand">
+            <img 
+              src={logo} 
+              alt="Teen Titans Logo" 
+              className="tt-nav__logo tt-float"
+            />
           </NavLink>
 
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarColor01"
-            aria-controls="navbarColor01"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="navbarColor01">
-            <ul className="navbar-nav me-auto">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/home">Home</NavLink>
+          <ul className="tt-nav__links">
+            <li>
+              <NavLink 
+                to="/home" 
+                className={({ isActive }) => 
+                  `tt-nav__link ${isActive ? 'tt-nav__link--active' : ''}`
+                }
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink 
+                to="/about" 
+                className={({ isActive }) => 
+                  `tt-nav__link ${isActive ? 'tt-nav__link--active' : ''}`
+                }
+              >
+                About
+              </NavLink>
+            </li>
+            {!username ? (
+              <li>
+                <button 
+                  onClick={onLoginClick}
+                  className="tt-nav__link tt-nav__link--button"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    font: 'inherit',
+                    padding: 'var(--space-sm) var(--space-md)',
+                    borderRadius: 'var(--radius-sm)',
+                    transition: 'all var(--transition-base)',
+                    position: 'relative'
+                  }}
+                >
+                  Login
+                </button>
               </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/about">About Us</NavLink>
+            ) : (
+              <li>
+                <button 
+                  onClick={onLogout}
+                  className="tt-nav__link tt-nav__link--button"
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    font: 'inherit',
+                    padding: 'var(--space-sm) var(--space-md)',
+                    borderRadius: 'var(--radius-sm)',
+                    transition: 'all var(--transition-base)',
+                    position: 'relative'
+                  }}
+                >
+                  Logout
+                </button>
               </li>
-            </ul>
-
-            {showGreeting && (
-              <span className="navbar-text ms-auto">
-                Hello, {username}
-              </span>
             )}
-          </div>
+          </ul>
+
+          {username && (
+            <div className="tt-nav__user">
+              <span className="tt-badge">
+                👋 Hello, {username}!
+              </span>
+            </div>
+          )}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }
 

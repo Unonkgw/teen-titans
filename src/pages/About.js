@@ -1,108 +1,196 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import starfireImg from "../assets/images/star.jpeg";
-import robinImg from "../assets/images/robin.jpeg";
+import starfireImg from "../assets/images/starfire2.jpg";
+import robinImg from "../assets/images/robin2.jpg";
+import ravenImg from "../assets/images/raven2.jpg";
+import beastBoyImg from "../assets/images/beastboy2.jpg";
+import cyborgImg from "../assets/images/cyborg2.jpg";
+import bg3 from "../assets/images/bg3.jpg";
 
 const characters = [
   {
     name: "Robin",
     image: robinImg,
     path: "/robin",
-    color: "#ef1717"
+    color: "var(--tt-red)",
+    description: "The fearless leader with unmatched martial arts skills and tactical genius.",
+    powers: ["Leadership", "Martial Arts", "Tactical Genius", "Acrobatics"]
   },
   {
     name: "Starfire",
     image: starfireImg,
     path: "/starfire",
-    color: "#e00077"
+    color: "var(--tt-orange)",
+    description: "An alien princess with the power of flight and energy projection.",
+    powers: ["Flight", "Starbolts", "Super Strength", "Energy Absorption"]
   },
-  //   {
-  //     name: "Raven",
-  //     image: ravenImg,
-  //     path: "/raven",
-  //     color: "#6a4c93"
-  //   },
-  //   {
-  //     name: "Beast Boy",
-  //     image: beastBoyImg,
-  //     path: "/beastboy",
-  //     color: "#2a9d8f"
-  //   },
-  //   {
-  //     name: "Cyborg",
-  //     image: cyborgImg,
-  //     path: "/cyborg",
-  //     color: "#1d3557"
-  //   }
+  {
+    name: "Raven",
+    image: ravenImg,
+    path: "/raven",
+    color: "var(--tt-purple)",
+    description: "Half-demon sorceress with dark magic and telekinetic abilities.",
+    powers: ["Dark Magic", "Telekinesis", "Portal Creation", "Soul Self"]
+  },
+  {
+    name: "Beast Boy",
+    image: beastBoyImg,
+    path: "/beastboy",
+    color: "var(--tt-green)",
+    description: "Shape-shifting hero who can transform into any animal imaginable.",
+    powers: ["Shape-shifting", "Animal Forms", "Enhanced Senses", "Regeneration"]
+  },
+  {
+    name: "Cyborg",
+    image: cyborgImg,
+    path: "/cyborg",
+    color: "var(--tt-cyan)",
+    description: "Half-human, half-machine hero with incredible technological prowess.",
+    powers: ["Cybernetic Enhancement", "Sonic Cannon", "Tech Interface", "Super Strength"]
+  }
 ];
 
 function About() {
   const navigate = useNavigate();
 
   return (
-    <div className="container mt-5">
-      <h1
-        className="text-center mb-4"
-        style={{ fontWeight: "bold", color: "#fffcfcff" }}
-      >
-        Meet the Teen Titans
-      </h1>
-      <p className="lead text-center mb-5" style={{ maxWidth: "800px", margin: "0 auto" }}>
-        Welcome to Titans Tower! We’re the Teen Titans, a team of young heroes
-        who’ve come together to protect the world and have each other’s backs.
-        From battling interdimensional demons to stopping everyday crime, we
-        face it all with courage, teamwork, and a little bit of chaos. Robin
-        keeps us sharp, Starfire brings the heart, Raven holds the mystic edge,
-        Beast Boy lightens the mood, and Cyborg powers us forward. We’re more
-        than just a superhero squad; we’re a family. <strong>Titans, go!</strong>
-      </p>
+    <div style={{ paddingTop: '80px' }}>
+      {/* Hero Section */}
+      <section className="tt-hero" style={{ minHeight: '60vh' }}>
+        <div 
+          className="tt-hero__bg"
+          style={{ backgroundImage: `url(${bg3})` }}
+        ></div>
+        
+        <div className="tt-hero__content tt-slide-up">
+          <div className="tt-badge" style={{ marginBottom: 'var(--space-lg)' }}>
+            🦸‍♂️ Our Heroes
+          </div>
+          
+          <h1 className="tt-hero__title">
+            Meet the Titans
+          </h1>
+          
+          <p className="tt-hero__subtitle">
+            We're the Teen Titans, a team of young heroes who've come together to protect 
+            the world and have each other's backs. From battling interdimensional demons to 
+            stopping everyday crime, we face it all with courage, teamwork, and a little bit of chaos.
+          </p>
+        </div>
+      </section>
 
-      <div className="row justify-content-center">
-        {characters.map((char) => (
-          <div key={char.name} className="col-md-6 col-lg-4 mb-4 d-flex">
-            <div
-              className="card h-100 shadow-lg border-0 overflow-hidden"
-              style={{
-                borderRadius: "15px",
-                cursor: "pointer",
-                transition: "transform 0.3s ease"
-              }}
-              onClick={() => navigate(char.path)}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
-            >
-              <div className="position-relative">
-                <img
-                  src={char.image}
-                  className="card-img-top"
-                  alt={char.name}
-                  style={{
-                    height: "400px",
-                    objectFit: "cover",
-                    filter: "brightness(85%)"
-                  }}
+      {/* Team Description */}
+      <section className="tt-section">
+        <div className="tt-container">
+          <div className="tt-card tt-card--glass" style={{ 
+            padding: 'var(--space-3xl)', 
+            textAlign: 'center',
+            marginBottom: 'var(--space-4xl)'
+          }}>
+            <p style={{ 
+              fontSize: '1.3rem', 
+              lineHeight: 1.7,
+              color: 'var(--text-secondary)',
+              maxWidth: '900px',
+              margin: '0 auto'
+            }}>
+              Robin keeps us sharp, Starfire brings the heart, Raven holds the mystic edge, 
+              Beast Boy lightens the mood, and Cyborg powers us forward. We're more than just 
+              a superhero squad; we're a family. <strong style={{ color: 'var(--tt-cyan)' }}>Titans, go!</strong>
+            </p>
+          </div>
+
+          {/* Character Grid */}
+          <div className="tt-grid">
+            {characters.map((character, index) => (
+              <div 
+                key={character.name} 
+                className="tt-character tt-slide-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={() => navigate(character.path)}
+              >
+                <img 
+                  src={character.image} 
+                  alt={character.name}
+                  className="tt-character__image"
                 />
-                <div
-                  className="position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center"
-                  style={{
-                    top: 0,
-                    left: 0,
-                    background: "rgba(0,0,0,0.4)",
-                    color: "white",
-                    opacity: 0,
-                    transition: "opacity 0.3s ease"
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.opacity = 1)}
-                  onMouseLeave={(e) => (e.currentTarget.style.opacity = 0)}
-                >
-                  <h4 style={{ fontWeight: "bold", color: char.color }}>{char.name}</h4>
-                  <p className="mb-0">Click to view profile</p>
+                <div className="tt-character__overlay">
+                  <div>
+                    <h3 
+                      className="tt-character__name"
+                      style={{ color: character.color }}
+                    >
+                      {character.name}
+                    </h3>
+                    <p className="tt-character__description">
+                      {character.description}
+                    </p>
+                    <div style={{ 
+                      display: 'flex', 
+                      flexWrap: 'wrap', 
+                      gap: 'var(--space-xs)',
+                      justifyContent: 'center',
+                      marginTop: 'var(--space-md)'
+                    }}>
+                      {character.powers.slice(0, 2).map((power, i) => (
+                        <span key={i} className="tt-badge" style={{ fontSize: '0.75rem' }}>
+                          {power}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
+            ))}
+          </div>
+
+          {/* Team Stats */}
+          <div className="tt-divider"></div>
+          
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+            gap: 'var(--space-xl)',
+            marginTop: 'var(--space-3xl)'
+          }}>
+            <div className="tt-card tt-card--glass" style={{ padding: 'var(--space-2xl)', textAlign: 'center' }}>
+              <h3 style={{ color: 'var(--tt-cyan)', fontSize: '2.5rem', marginBottom: 'var(--space-md)' }}>
+                5
+              </h3>
+              <h4 style={{ marginBottom: 'var(--space-sm)', color: 'var(--text-primary)' }}>
+                Unique Heroes
+              </h4>
+              <p style={{ color: 'var(--text-muted)', margin: 0 }}>
+                Each with extraordinary abilities and unwavering dedication to justice
+              </p>
+            </div>
+            
+            <div className="tt-card tt-card--glass" style={{ padding: 'var(--space-2xl)', textAlign: 'center' }}>
+              <h3 style={{ color: 'var(--tt-yellow)', fontSize: '2.5rem', marginBottom: 'var(--space-md)' }}>
+                ∞
+              </h3>
+              <h4 style={{ marginBottom: 'var(--space-sm)', color: 'var(--text-primary)' }}>
+                Missions Completed
+              </h4>
+              <p style={{ color: 'var(--text-muted)', margin: 0 }}>
+                From saving cats to defeating world-ending threats
+              </p>
+            </div>
+            
+            <div className="tt-card tt-card--glass" style={{ padding: 'var(--space-2xl)', textAlign: 'center' }}>
+              <h3 style={{ color: 'var(--tt-green)', fontSize: '2.5rem', marginBottom: 'var(--space-md)' }}>
+                1
+              </h3>
+              <h4 style={{ marginBottom: 'var(--space-sm)', color: 'var(--text-primary)' }}>
+                Unbreakable Bond
+              </h4>
+              <p style={{ color: 'var(--text-muted)', margin: 0 }}>
+                United as a family, stronger together than apart
+              </p>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      </section>
     </div>
   );
 }
